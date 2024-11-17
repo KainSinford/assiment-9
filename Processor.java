@@ -6,21 +6,20 @@ public class Processor {
 
     public processor() {
         studentList = new StudentList();
-    }
-
+    } 
     public void showMenu() {
         Scanner scanner = new Scanner(System.in);
         int choice;
         
         do {
-            System.out.println("\n===== MENU =====");
-            System.out.println("1. Enter student info ");
-            System.out.println("2. Show info all student ");
-            System.out.println("3. Search student by id");
-            System.out.println("4. Delete student by id");
-            System.out.println("5. Change student by id");
-            System.out.println("6. Exit");
-            System.out.print(" Choose one:  ");
+            System.out.println("\n== MENU ==");
+            System.out.println("1. Nhập thông tin sinh viên ");
+            System.out.println("2. Hiển thị thông tin tất cả sinh viên ");
+            System.out.println("3. Tìm kiếm sinh viên theo id");
+            System.out.println("4. Xóa sinh viên theo id");
+            System.out.println("5. Thay đổi sinh viên theo id");
+            System.out.println("6. thoát");
+            System.out.print(" \Chọn một:  ");
             choice = scanner.nextInt();
 
             switch (choice) {
@@ -40,21 +39,21 @@ public class Processor {
                     editStudent(scanner);
                     break;
                 case 6:
-                    System.out.println("Exit program...");
+                    System.out.println("Thoát chương trình...");
                     break;
                 default:
-                    System.out.println("Incorrect!");
+                    System.out.println("Không đúng!");
                     break;
             }
         } while (choice != 6);
     }
 
     private void inputStudents(Scanner scanner) {
-        System.out.print("Enter quantity student: ");
+        System.out.print("Nhập số lượng sinh viên: ");
         int n = scanner.nextInt();
         scanner.nextLine();
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter student infomation no " + (i + 1));
+            System.out.println("Nhập thông tin sinh viên số " + (i + 1));
             Student student = new Student("", "", 0);
             student.input();
             studentList.addStudent(student);
@@ -62,39 +61,39 @@ public class Processor {
     }
     private void searchStudent(Scanner scanner) {
         scanner.nextLine(); 
-        System.out.print("Enter id to search: ");
+        System.out.print("Nhập id để tìm: ");
         String id = scanner.nextLine();
         Student student = studentList.searchById(id);
         if (student != null) {
             student.display();
         } else {
-            System.out.println("Student does not exist");
+            System.out.println("Sinh viên không tồn tại");
         }
     }
 
     private void deleteStudent(Scanner scanner) {
         scanner.nextLine();
-        System.out.print("Enter id student to delete: ");
+        System.out.print("Nhập id sinh viên để xía: ");
         String id = scanner.nextLine();
         if (studentList.deleteById(id)) {
-            System.out.println("Delete success.");
+            System.out.println("xóa thành công.");
         } else {
-            System.out.println("Studen does not exist.");
+            System.out.println("\Sinh viên không tồn tại.");
         }
     }
     private void editStudent(Scanner scanner) {
         scanner.nextLine(); 
-        System.out.print("Enter the student ID to edit: ");
+        System.out.print("Nhập id sinh viên để thay đổi: ");
         String id = scanner.nextLine();
-        System.out.print("Enter new name: ");
+        System.out.print("Nhập tên mới: ");
         String newName = scanner.nextLine();
-        System.out.print("Enter new age: ");
+        System.out.print("Nhập tuổi mới: ");
         int newAge = scanner.nextInt();
 
         if (studentList.editById(id, newName, newAge)) {
-            System.out.println("Change student info success.");
+            System.out.println("Đổi thông tin sinh viên thành công.");
         } else {
-            System.out.println("Student does not exist.");
+            System.out.println("Sinh viên không tồn tại .");
         }
     }
 
